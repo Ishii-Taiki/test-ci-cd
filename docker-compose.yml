@@ -1,0 +1,14 @@
+version: "3.0"
+services:
+  app:
+    image: 754127256443.dkr.ecr.ap-northeast-1.amazonaws.com/gradle-spring-boot:latest
+    ports:
+      - 8080:8080
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: /ecs/EnsyuEnd
+        awslogs-region: ap-northeast-1
+        awslogs-stream-prefix: ecs
+
+#ecs-cli compose --region ap-northeast-1 --file docker-compose.yml --ecs-params ecs-params.yml up --launch-type FARGATE

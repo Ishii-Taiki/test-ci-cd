@@ -1,0 +1,27 @@
+version: 1
+task_definition:
+  task_execution_role: arn:aws:iam::754127256443:role/ecsTaskExecutionRole
+  task_role_arn: arn:aws:iam::754127256443:role/rdsFullAccess_from_ecr
+  ecs_network_mode: awsvpc
+  task_size:
+    mem_limit: 1GB
+    cpu_limit: 512
+  services:
+    app:
+      secrets:
+        - value_from: arn:aws:ssm:ap-northeast-1:754127256443:parameter/test/rds/HOST_NAME
+          name: HOST_URL
+        - value_from: arn:aws:ssm:ap-northeast-1:754127256443:parameter/test/rds/USER_NAME
+          name: USER_NAME
+        - value_from: arn:aws:ssm:ap-northeast-1:754127256443:parameter/test/rds/USER_PASSWORD
+          name: USER_PASSWORD
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - subnet-057d783cb1e140ab7
+      security_groups:
+        - sg-0cb49860fb3b2374c
+        - sg-096586cfab083d4e6
+        - sg-02f11c3f119ce0775
+      assign_public_ip: ENABLED
