@@ -30,7 +30,7 @@ jobs:
           distribution: 'adopt'
           java-version: '11'
           cache: 'gradle'
-      - run: ./gradlew assemble
+      - run: sudo ./gradlew assemble
       - id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
       - id: build-image
