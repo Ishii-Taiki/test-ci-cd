@@ -27,7 +27,7 @@ jobs:
           aws-region: ${{ env.REGION }}
       - name: Configure AWS
         run: |
-          export AWS_ROLE_ARN= ${{ secrets.AWS_IAM_ROLE_ARN }}
+          export AWS_ROLE_ARN=${{ secrets.AWS_IAM_ROLE_ARN }}
           export AWS_WEB_IDENTITY_TOKEN_FILE=/tmp/awscreds
           export AWS_DEFAULT_REGION=${{ env.REGION }}
           
