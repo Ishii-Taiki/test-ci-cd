@@ -25,6 +25,12 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
           aws-region: ${{ env.REGION }}
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+          cache: 'gradle'
+      - run: ./gradlew assemble
       - id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
       - id: build-image
