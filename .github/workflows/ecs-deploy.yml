@@ -54,11 +54,11 @@ jobs:
           IMAGE_NAME: ${{ steps.build-image.outputs.image }}
           COMPOSE_FILE: ${{ env.SVC_COMPOSE_FILE }}
           OUT_COMPOSE_FILE: deploy.docker-compose.yml
-      - id: target-group
-        run: |
-          TARGET_GROUP=$(echo "$PROJECT_NAME-$ENV_NAME" | sed -e "s|_|-|g")
-          TARGET_GROUP_ARN=$(aws elbv2 describe-target-groups --names $TARGET_GROUP | jq ".TargetGroups[0].TargetGroupArn" --raw-output)
-          echo "::set-output name=arn::$TARGET_GROUP_ARN"
+#      - id: target-group
+#        run: |
+#          TARGET_GROUP=$(echo "$PROJECT_NAME-$ENV_NAME" | sed -e "s|_|-|g")
+#          TARGET_GROUP_ARN=$(aws elbv2 describe-target-groups --names $TARGET_GROUP | jq ".TargetGroups[0].TargetGroupArn" --raw-output)
+#          echo "::set-output name=arn::$TARGET_GROUP_ARN"
       - run: |
           ecs-cli configure \
             --region $REGION \
