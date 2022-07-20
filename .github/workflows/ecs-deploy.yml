@@ -66,7 +66,7 @@ jobs:
             --cluster $CLUSTER \
             --config-name $CLUSTER
         env:
-          CLUSTER: ${{ env.PROJECT_NAME }}
+          CLUSTER: test3 #change it
       - run: |
           ecs-cli compose \
             --cluster $CLUSTER \
