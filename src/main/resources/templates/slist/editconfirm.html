@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ForEach</title>
+<style type="text/css">
+table {
+	border-collapse: collapse;
+}
+
+td {
+	border: solid 1px #c71585;
+	text-indent: 5px;
+}
+</style>
+</head>
+<body>
+	<h2>商品編集確認画面</h2>
+	<table th:object="${slistForm}">
+		<tr>
+			<td style="width: 100px"><b>商品名</b></td>
+			<td style="width: 200px" th:text="*{goodsName}">お好みエアチョコボール</td>
+		</tr>
+		<tr>
+			<td><b>商品単価</b></td>
+			<td th:text="*{goodsTanka}">150</td>
+		</tr>
+		<tr>
+			<td><b>メーカーコード</b></td>
+			<td><span th:text="*{makerId}">MakerId</span>:<span th:text="*{makerName}">MakerName</span></td>
+		</tr>
+		<tr>
+			<td><b>分類コード</b></td>
+			<td><span th:text="*{categoryId}">CategoryId</span>:<span th:text="*{categoryName}">CategoryName</span></td>
+		</tr>
+	</table>
+	<form th:action="@{/slist/update}" th:object="${slistForm}"
+		method="post">
+		<input type="hidden" id="goodsId" name="goodsId" th:field="*{goodsId}"
+			th:value="*{goodsId}" /> <input type="hidden"
+			th:field="*{goodsName}" th:value="*{goodsName}" /> <input
+			type="hidden" th:field="*{goodsTanka}" th:value="*{goodsTanka}" /><input
+			type="hidden" th:field="*{makerId}" th:value="*{makerId}" /><input
+			type="hidden" th:field="*{categoryId}" th:value="*{categoryId}" />
+			<input type="hidden" id="version" name="version" th:field="*{version}"
+			th:value="*{version}" />
+			 <input
+			type="submit" name="btnName" value="更新" /><input type="submit"
+			name="btnName" value="戻る" />
+	</form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品一覧</title>
+<link rel="stylesheet" type="text/css" href="../static/css/sample.css"
+	th:href="@{/css/sample.css}" />
+</head>
+<body>
+	<h2>ユーザー一覧</h2>
+	<table>
+		<tr class="title">
+			<td style="width: 50px;"><b>ID</b></td>
+			<td style="width: 200px;"><b>商品名</b></td>
+			<td style="width: 80px;"><b>商品単価</b></td>
+			<td style="width: 150px;"><b>メーカー名</b></td>
+			<td style="width: 150px;"><b>分類名</b></td>
+			<td style="width: 50px;"><b>version</b></td>
+			<td style="width: 50px;"></td>
+			<td style="width: 50px;"></td>
+		</tr>
+		<tr th:each="goods,status : ${GOODSLIST}" th:class="${status.odd}? 'odd'">
+			<td th:text="${goods.goodsId}">1000</td>
+			<td th:text="${goods.goodsName}">クロックミント</td>
+			<td th:text="${goods.goodsTanka}">200</td>
+			<td th:text="${goods.makerName}">ABC食品</td>
+			<td th:text="${goods.categoryName}">サインリー</td>
+			<td th:text="${goods.version}">1</td>
+			<td><a th:href="@{|/slist/edit/${goods.goodsId}|}"
+				th:text="編集">編集</a></td>
+			<td><a th:href="@{|/slist/delete/${goods.goodsId}|}" th:text="削除">削除</a></td>
+		</tr>
+	</table>
+</body>
+</html>

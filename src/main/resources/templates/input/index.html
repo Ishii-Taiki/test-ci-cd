@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>情報入力</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/sample.css"
+          th:href="@{/css/sample.css}" />
+</head>
+<body>
+<form th:action="@{/input}" th:object="${inputForm}" method="post">
+    <table>
+        <tr>
+            <td style="width: 50px;">氏名：</td>
+            <td><input type="text" id="name"
+                       name="name" th:field="*{name}" th:errorClass="fieldError" /></td>
+        </tr>
+        <tr>
+            <td>年齢：</td>
+            <td><input type="text" id="age" name="age" th:field="*{age}"
+                       th:errorClass="fieldError" /></td>
+        </tr>
+        <tr>
+            <td>E-Mail：</td>
+            <td><input type="text" id="email" name="email"
+                       th:field="*{email}" th:errorClass="fieldError"/></td>
+        </tr>
+        <tr>
+            <td>趣味：</td>
+            <td><span th:each="hby,status : ${HOBBYLIST}">
+			<input type="checkbox"
+                   th:field="*{hobby}" th:value="${hby}" th:text="${hby}"/>
+				<span th:if="${status.index==status.size/2}"><br/></span></span></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="submit" value="送信する" /></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <ul th:if="${#fields.hasAnyErrors()}">
+                    <li th:each="err : ${#fields.allErrors()}" th:text="${err}">ERROR!</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</form>

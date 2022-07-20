@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>情報確認表示</title>
+    <style type="text/css">
+table {
+	border-collapse: collapse;
+}
+
+td {
+	border: solid 1px #c71585;
+	text-indent: 5px;
+}
+</style>
+</head>
+<body>
+<table th:object="${inputForm}">
+    <tr>
+        <td style="width: 100px"><b>名前</b></td>
+        <td style="width: 200px" th:text="*{name}"></td>
+    </tr>
+    <tr>
+        <td><b>年齢</b></td>
+        <td th:text="*{age}"></td>
+    </tr>
+    <tr>
+        <td><b>E-Mail</b></td>
+        <td th:text="*{email}"></td>
+    </tr>
+    <tr>
+        <td><b>趣味</b></td>
+        <td><div th:each="hby : *{hobby}">
+            <span th:text="${hby}"></span></div></td>
+    </tr>
+
+</table>
+<form th:action="@{/input/back}" th:object="${inputForm}" method="post">
+    <input type="hidden" th:field="*{name}" th:value="*{name}" />
+    <input type="hidden" th:field="*{age}" th:value="*{age}" />
+    <input type="hidden" th:field="*{email}" th:value="*{email}" />
+    <input type="hidden" th:field="*{hobby}" th:value="*{hobby}" />
+    <input type="submit" value="戻る" />
+</form>
+</body>
+</html>

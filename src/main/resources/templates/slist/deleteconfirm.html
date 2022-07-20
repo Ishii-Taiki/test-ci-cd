@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ForEach</title>
+<style type="text/css">
+table {
+	border-collapse: collapse;
+}
+
+td {
+	border: solid 1px #c71585;
+	text-indent: 5px;
+}
+</style>
+</head>
+<body>
+	<h2>商品削除確認画面</h2>
+	<table th:object="${GOODSJOIN}">
+		<tr>
+			<td style="width: 100px"><b>商品名</b></td>
+			<td style="width: 200px" th:text="*{goodsName}">お好みエアチョコボール</td>
+		</tr>
+		<tr>
+			<td><b>商品単価</b></td>
+			<td th:text="*{goodsTanka}">150</td>
+		</tr>
+	</table>
+	<a th:href="@{|/slist/deleteexe/${GOODSJOIN.goodsId}|}"><button>削除</button></a>&nbsp;&nbsp;
+	<a th:href="@{/slist}"><button>戻る</button></a>
+</body>
+</html>

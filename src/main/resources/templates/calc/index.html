@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>四則演算</title>
+</head>
+<body>
+<h3>四則演算(1以上100以下の値の計算を行う）</h3>
+<form th:action="@{/calc}" th:object="${calcForm}" method="post">
+  <table>
+    <tr>
+      <td><input type="text" id="arg1" name="arg1" th:field="*{arg1}"
+                 th:errorClasss="fieldError" value="100" /></td>
+      <td><select name="selectBox" th:field="*{selectBox}">
+        <option value="1">＋</option>
+        <option value="2">－</option>
+        <option value="3">×</option>
+        <option value="4">÷</option>
+      </select></td>
+      <td><input type="text" id="arg2" name="arg2" th:field="*{arg2}"
+                 th:errorClasss="fieldError" value="200" /></td>
+      <td>=</td>
+      <td><span th:text="${result}" th:unless="${result == null}">500</span></td>
+    </tr>
+    <tr>
+      <td colspan="5"><input type="submit" value="計算" /></td>
+    </tr>
+  </table>
+  <ul th:if="${#fields.hasAnyErrors()}">
+    <li th:each="err : ${#fields.allErrors()}" th:text="${err}">ERROR!</li>
+  </ul>
+</form>
+</body>
+</html>

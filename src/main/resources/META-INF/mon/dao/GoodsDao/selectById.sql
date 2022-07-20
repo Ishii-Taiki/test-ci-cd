@@ -1,0 +1,1 @@
+select * from goods where goods_id = /* id */1

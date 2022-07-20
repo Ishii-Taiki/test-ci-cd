@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"><title>消費税計算</title></head>
+<body>
+<h2>消費税計算</h2>
+<form th:action="@{/zeicalc}" th:object="${zeiCalcForm}" method="post">
+		<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+              class="errorMessage">ERROR!</span>
+  <br /> 金額：<input type="text"id="price" name="price" th:field="*{price}"
+                   th:errorClasss="fieldError" value="100" /> 円&nbsp;&nbsp;
+  <input type="submit" value="消費税計算" /> <br />
+  <span th:text="'税込金額は' + ${result} + '円です'" th:unless="${result == null}">税込金額は500円です</span>
+</form>
+</body></html>
