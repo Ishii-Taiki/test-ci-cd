@@ -7,7 +7,7 @@ services:
     logging:
       driver: awslogs
       options:
-        awslogs-group: /ecs/EnsyuEnd
+        awslogs-group: /ecs/github-test
         awslogs-region: ap-northeast-1
         awslogs-stream-prefix: ecs
 
