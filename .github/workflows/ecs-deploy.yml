@@ -29,7 +29,7 @@ jobs:
           run: aws sts get-caller-identity
       - uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'S
+          distribution: 'adopt'
           java-version: '11'
           cache: 'gradle'
       - run: |
