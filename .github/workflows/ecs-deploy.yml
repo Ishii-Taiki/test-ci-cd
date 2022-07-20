@@ -84,5 +84,5 @@ jobs:
           COMPOSE_FILE: ${{ steps.compose-file.outputs.file }}
           ECS_PARAMS: ${{ env.SVC_ECS_PARAMS }}
           TARGET_GROUP_ARN: ${{ steps.target-group.outputs.arn }}
-          CONTAINER_NAME: ${{ env.SVC_CONTAINER_NAME }}
+          CONTAINER_NAME: app #${{ env.SVC_CONTAINER_NAME }} change it
           CONTAINER_PORT: ${{ env.SVC_CONTAINER_PORT }}
