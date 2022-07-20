@@ -7,11 +7,11 @@ jobs:
       contents: read
       id-token: write
     env:
-      ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }} #you need to enter env variable on github secrets
       REGION: ap-northeast-1
       ACTION_ROLE: ecs_deploy_gh_actions-gh_actions
-      PROJECT_NAME: statice-adv22
-      ENV_NAME: prod
+      PROJECT_NAME: statice-adv22 # change it
+      ENV_NAME: prod #change it
       SVC_COMPOSE_FILE: docker-compose.yml
       SVC_ECS_PARAMS: ecs-params.yml
       SVC_CONTAINER_NAME: main
@@ -23,7 +23,7 @@ jobs:
           sudo chmod +x /usr/local/bin/ecs-cli
       - uses: aws-actions/configure-aws-credentials@master
         with:
-          role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }} #you need to enter env variable on github secrets
           aws-region: ${{ env.REGION }}
       - name: get-caller-identity shows myrole_A as expected
         run: aws sts get-caller-identity
@@ -44,7 +44,7 @@ jobs:
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: gradle-spring-boot
+          ECR_REPOSITORY: gradle-spring-boot #change it
           IMAGE_TAG: ${{ github.sha }}
       - id: compose-file
         run: |
@@ -79,7 +79,7 @@ jobs:
             --create-log-groups \
             --force-deployment
         env:
-          CLUSTER: ${{ env.PROJECT_NAME }}-${{ env.ENV_NAME }}-cluster
+          CLUSTER: test3 #change it
           PROJECT_NAME: ${{ env.PROJECT_NAME }}
           COMPOSE_FILE: ${{ steps.compose-file.outputs.file }}
           ECS_PARAMS: ${{ env.SVC_ECS_PARAMS }}
