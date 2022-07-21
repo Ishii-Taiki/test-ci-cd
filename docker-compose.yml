@@ -1,7 +1,7 @@
 version: "3.0"
 services:
   app:
-    image: 754127256443.dkr.ecr.ap-northeast-1.amazonaws.com/gradle-spring-boot:latest
+    image: __IMAGE_NAME__
     ports:
       - 8080:8080
     logging:
