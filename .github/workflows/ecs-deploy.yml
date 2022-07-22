@@ -76,12 +76,18 @@ jobs:
             --ecs-params $ECS_PARAMS \
           service up \
             --target-groups "targetGroupArn=$TARGET_GROUP_ARN,containerName=$CONTAINER_NAME,containerPort=$CONTAINER_PORT" \
-            --deployment-min-healthy-percent 200\
-            --deployment-max-percent 400\
             --tags "application=$PROJECT_NAME" \
             --create-log-groups \
             --timeout 15 \
             --force-deployment
+          
+          ecs-cli scale \
+            --capability-iam\
+            --size 2\
+            --cluster $CLUSTER \
+            --region $REGION 
+            
+
         env:
           CLUSTER: test3 #change it
           PROJECT_NAME: ${{ env.PROJECT_NAME }}
