@@ -68,7 +68,7 @@ jobs:
             --config-name $CLUSTER
         env:
           CLUSTER: test3 #change it
-      - run:
+      - run: |
 #          ecs-cli compose \
 #            --cluster $CLUSTER \
 #            --project-name $PROJECT_NAME \
@@ -81,7 +81,7 @@ jobs:
 #            --timeout 15 \
 #            --force-deployment
           
-          ecs-cli compose service scale \
+          ecs-cli compose service scale 2 \
             --deployment-max-percent 400 \
             --deployment-min-healthy-percent 200 \
             --timeout 15 \
