@@ -81,7 +81,10 @@ jobs:
 #            --timeout 15 \
 #            --force-deployment
           
-          ecs-cli compose service scale 2
+          ecs-cli compose \
+            --project-name $PROJECT_NAME \
+            --file $COMPOSE_FILE \
+            service scale 2
             
 
         env:
