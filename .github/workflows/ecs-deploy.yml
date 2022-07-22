@@ -68,25 +68,23 @@ jobs:
             --config-name $CLUSTER
         env:
           CLUSTER: test3 #change it
-      - run:
-#          ecs-cli compose \
-#            --cluster $CLUSTER \
-#            --project-name $PROJECT_NAME \
-#            --file $COMPOSE_FILE \
-#            --ecs-params $ECS_PARAMS \
-#          service up \
-#            --target-groups "targetGroupArn=$TARGET_GROUP_ARN,containerName=$CONTAINER_NAME,containerPort=$CONTAINER_PORT" \
-#            --tags "application=$PROJECT_NAME" \
-#            --create-log-groups \
-#            --timeout 15 \
-#            --force-deployment
-          
+      - run:|
           ecs-cli compose \
+            --cluster $CLUSTER \
             --project-name $PROJECT_NAME \
             --file $COMPOSE_FILE \
+            --ecs-params $ECS_PARAMS \
+          service up \
+            --target-groups "targetGroupArn=$TARGET_GROUP_ARN,containerName=$CONTAINER_NAME,containerPort=$CONTAINER_PORT" \
+            --tags "application=$PROJECT_NAME" \
+            --create-log-groups \
+            --timeout 15 \
+            --force-deployment
           service scale 2 \
-            --deployment-max-percent 400\
-            --deployment-min-healthy-percent
+          --deployment-max-percent 400\
+          --deployment-min-healthy-percent
+
+
             
 
         env:
