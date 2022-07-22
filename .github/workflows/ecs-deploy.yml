@@ -84,7 +84,7 @@ jobs:
           ecs-cli compose \
             --project-name $PROJECT_NAME \
             --file $COMPOSE_FILE \
-            service scale 2 \
+          service scale 2 \
             --deployment-max-percent 400\
             --deployment-min-healthy-percent
             
