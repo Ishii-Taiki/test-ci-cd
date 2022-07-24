@@ -85,7 +85,7 @@ jobs:
             --region $REGION \
             --file $COMPOSE_FILE \
             --cluster $CLUSTER \
-            --config-name "default"
+            --config-name "default" \
           service scale 2 \
             --deployment-max-percent 400 \
             --deployment-min-healthy-percent 200
