@@ -81,6 +81,11 @@ jobs:
             --create-log-groups \
             --timeout 15 \
             --force-deployment
+            
+          ecs-cli compose \
+            --project-name $PROJECT_NAME \
+            --file $COMPOSE_FILE \
+            service scale 2
 
         env:
           CLUSTER: test3 #change it
