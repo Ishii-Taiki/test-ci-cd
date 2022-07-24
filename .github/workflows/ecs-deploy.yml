@@ -76,7 +76,7 @@ jobs:
             --ecs-params $ECS_PARAMS \
           service up \
             --target-groups "targetGroupArn=$TARGET_GROUP_ARN,containerName=$CONTAINER_NAME,containerPort=$CONTAINER_PORT" \
-            --deployment-min-healthy-percent 50
+            --deployment-min-healthy-percent 50 \
             --tags "application=$PROJECT_NAME" \
             --create-log-groups \
             --timeout 15 \
