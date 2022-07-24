@@ -80,11 +80,12 @@ jobs:
             --create-log-groups \
             --timeout 15 \
             --force-deployment
+
+          ecs-cli compose \
+            --file $COMPOSE_FILE \
           service scale 2 \
             --deployment-max-percent 400 \
-            --deployment-min-healthy-percent
-          
-          ecs-cli compose --file $COMPOSE_FILE scale 2
+            --deployment-min-healthy-percent 200
 
         env:
           CLUSTER: test3 #change it
